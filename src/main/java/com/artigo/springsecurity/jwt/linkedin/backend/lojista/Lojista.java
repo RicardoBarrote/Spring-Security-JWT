@@ -17,30 +17,33 @@ public class Lojista extends Users implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(nullable = false, unique = true)
-    private String cpf;
+    private String cnpj;
 
     @Column(nullable = false)
-    private String apelido;
+    private String razaosocial;
 
     public Lojista() {
     }
 
-    public Lojista(String email, String senha, UserRole role, String cpf, String apelido) {
+    public Lojista(String email, String senha, UserRole role, String cnpj, String razaosocial) {
         super(email, senha, role);
-        this.cpf = cpf;
-        this.apelido = apelido;
+        this.cnpj = cnpj;
+        this.razaosocial = razaosocial;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public String getApelido() {
-        return apelido;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
-    public void setApelido(String apelido) {
-        this.apelido = apelido;
+    public String getRazaosocial() {
+        return razaosocial;
     }
 
+    public void setRazaosocial(String razaosocial) {
+        this.razaosocial = razaosocial;
+    }
 }
