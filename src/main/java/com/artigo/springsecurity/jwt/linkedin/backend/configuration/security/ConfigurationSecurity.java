@@ -23,10 +23,8 @@ public class ConfigurationSecurity {
                 ).sessionManagement(s ->
                         s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(a ->
-                        a.requestMatchers(HttpMethod.POST, "/criar/artigo").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.PUT, "/criar/artigo").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.GET, "/visualizar/artigo").permitAll()
-                                .anyRequest().authenticated())
+                        a.requestMatchers(HttpMethod.POST, "/clientes").permitAll()
+                                .anyRequest().permitAll())
                 .build();
     }
 
