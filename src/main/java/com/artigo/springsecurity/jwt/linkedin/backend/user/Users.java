@@ -44,6 +44,7 @@ public abstract class Users implements Serializable, UserDetails {
     @Column(nullable = false)
     private UserRole role;
 
+
     public Users() {
     }
 
@@ -80,6 +81,7 @@ public abstract class Users implements Serializable, UserDetails {
     public void setRole(UserRole role) {
         this.role = role;
     }
+
 
     @Override
     public boolean equals(Object o) {

@@ -2,9 +2,7 @@ package com.artigo.springsecurity.jwt.linkedin.backend.lojista;
 
 import com.artigo.springsecurity.jwt.linkedin.backend.user.Users;
 import com.artigo.springsecurity.jwt.linkedin.backend.user.enums.UserRole;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -21,6 +19,9 @@ public class Lojista extends Users implements Serializable {
 
     @Column(nullable = false)
     private String razaosocial;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Users users;
 
     public Lojista() {
     }
