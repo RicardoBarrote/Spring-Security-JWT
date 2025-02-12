@@ -15,21 +15,17 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-public class filtroDeSeguranca extends OncePerRequestFilter {
+public class FiltroDeSeguranca extends OncePerRequestFilter {
 
     private final JwtTokenService tokenService;
     private final UserRepository userRepository;
 
-    public filtroDeSeguranca(JwtTokenService tokenService, UserRepository userRepository) {
+    public FiltroDeSeguranca(JwtTokenService tokenService, UserRepository userRepository) {
         this.tokenService = tokenService;
         this.userRepository = userRepository;
     }
 
-    //Iremos estender a OncePerRequestFilter para que a cada requisição do usuário será feito um pente fino para pegar as informações do token caso haja.
-
-
-    //O metodo doFilterInternal é o que será chamado antes do proprio filtro do Spring Security, então e aqui que iremos pegar as informacoes dentro do token
-    @Override
+  @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = recuperarToken(request);
         if (token != null) {
@@ -49,7 +45,4 @@ public class filtroDeSeguranca extends OncePerRequestFilter {
         }
         return header.replace("Bearer ", "");
     }
-
-    //Por padrão nas requisições  Http quando enviamos um header de autorizacao que contem um token, iremos identificar o token, nesse caso um Bearer Token,
-    //então iremos cortar esse nome Bearer para pegarmos apenas o nosso token
 }
