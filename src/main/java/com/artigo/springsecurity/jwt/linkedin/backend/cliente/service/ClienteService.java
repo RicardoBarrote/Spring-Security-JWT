@@ -1,22 +1,28 @@
 package com.artigo.springsecurity.jwt.linkedin.backend.cliente.service;
 
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.Cliente;
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteAtualizarDto;
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteResponseDto;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteRequestDto;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.exception.ClienteNotFoundException;
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.mapstruct.ClienteMapStruct;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
 public class ClienteService {
 
     private final ClienteRepository repository;
+    private final ClienteMapStruct mapStruct;
 
-    public ClienteService(ClienteRepository repository) {
+    public ClienteService(ClienteRepository repository, ClienteMapStruct mapStruct) {
         this.repository = repository;
+        this.mapStruct = mapStruct;
     }
 
     @Transactional
@@ -25,6 +31,24 @@ public class ClienteService {
         Cliente cliente = new Cliente(dto.email(), criptografarSenha, dto.role(), dto.cpf(), dto.apelido());
 
         repository.save(cliente);
+    }
+
+    public List<ClienteResponseDto> listar() {
+        return mapStruct.converterListaParaResponseDto(repository.findAll());
+    }
+
+    public ClienteResponseDto buscar(UUID id) {
+        return mapStruct.converterParaResponseDto(repository.findById(id).orElseThrow(() -> new ClienteNotFoundException("CLiente não encontrado! Id: " + id)));
+    }
+
+    @Transactional
+    public void atualizar(String apelido, ClienteAtualizarDto dto) {
+        repository.findByApelido(apelido)
+                .map(c -> {
+                    c.setEmail(dto.emailAtualizado());
+                    c.setApelido(dto.apelidoAtualizado());
+                    return repository.save(c);
+                }).orElseThrow(() -> new ClienteNotFoundException("Não foi possível atualizar o cliente!"));
     }
 
     @Transactional

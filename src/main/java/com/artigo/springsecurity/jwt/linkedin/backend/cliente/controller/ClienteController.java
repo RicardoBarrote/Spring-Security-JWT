@@ -1,5 +1,7 @@
 package com.artigo.springsecurity.jwt.linkedin.backend.cliente.controller;
 
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteAtualizarDto;
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteResponseDto;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteRequestDto;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.service.ClienteService;
 import jakarta.validation.Valid;
@@ -7,8 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/clientes")
 public class ClienteController {
@@ -25,14 +29,25 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @GetMapping
+    public ResponseEntity<List<ClienteResponseDto>> listar() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.listar());
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<ClienteResponseDto> buscar(@PathVariable UUID id) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.buscar(id));
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> atualizar(@RequestParam(value = "apelido", required = false) String apelido, @RequestBody @Valid ClienteAtualizarDto dto) {
+        service.atualizar(apelido, dto);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable UUID id) {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
-
-    @GetMapping
-    public ResponseEntity<String> cliente() {
-        return ResponseEntity.status(HttpStatus.OK).body("Olá, essa é a rota de cliente! você está autenticado.");
     }
 }
