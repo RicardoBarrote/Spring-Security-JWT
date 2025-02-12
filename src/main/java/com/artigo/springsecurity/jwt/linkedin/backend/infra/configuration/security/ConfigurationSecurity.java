@@ -1,4 +1,4 @@
-package com.artigo.springsecurity.jwt.linkedin.backend.configuration.security;
+package com.artigo.springsecurity.jwt.linkedin.backend.infra.configuration.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,9 +18,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class ConfigurationSecurity {
 
-    private final filtroDeSeguranca filtroDeSeguranca;
+    private final FiltroDeSeguranca filtroDeSeguranca;
 
-    public ConfigurationSecurity(com.artigo.springsecurity.jwt.linkedin.backend.configuration.security.filtroDeSeguranca filtroDeSeguranca) {
+    public ConfigurationSecurity(FiltroDeSeguranca filtroDeSeguranca) {
         this.filtroDeSeguranca = filtroDeSeguranca;
     }
 
