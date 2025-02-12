@@ -6,7 +6,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.br.CPF;
 
 public record ClienteRequestDto(@Email
                                 String email,
@@ -15,7 +14,8 @@ public record ClienteRequestDto(@Email
                                 String senha,
                                 @Enumerated(EnumType.STRING)
                                 UserRole role,
-                                @CPF
+                                @NotNull
+                                @NotBlank
                                 String cpf,
                                 @NotNull
                                 @NotBlank

@@ -30,4 +30,9 @@ public class ClienteController {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @GetMapping
+    public ResponseEntity<String> cliente() {
+        return ResponseEntity.status(HttpStatus.OK).body("Olá, essa é a rota de cliente! você está autenticado.");
+    }
 }
