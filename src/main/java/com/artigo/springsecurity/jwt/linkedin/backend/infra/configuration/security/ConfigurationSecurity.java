@@ -31,9 +31,21 @@ public class ConfigurationSecurity {
                 ).sessionManagement(s ->
                         s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(a ->
-                        a.requestMatchers(HttpMethod.POST, "/clientes").permitAll()
+                        a.requestMatchers("/",
+                                        "/index.html",
+                                        "/login.html",
+                                        "/autenticado.html",
+                                        "papel.html",
+                                        "registrarCliente.html",
+                                        "/css/**",
+                                        "/js/**",
+                                        "/images/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/clientes").hasRole("CLIENTE")
+                                .requestMatchers(HttpMethod.POST, "/clientes").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/clientes").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/clientes/{id}").permitAll()
+                                .requestMatchers(HttpMethod.PUT, "/clientes").permitAll()
+                                .requestMatchers(HttpMethod.DELETE, "/clientes/{id}").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(filtroDeSeguranca, UsernamePasswordAuthenticationFilter.class)
