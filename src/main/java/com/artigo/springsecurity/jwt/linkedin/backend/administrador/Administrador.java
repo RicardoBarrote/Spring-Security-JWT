@@ -16,9 +16,6 @@ public class Administrador extends Users implements Serializable {
     @Column(nullable = false)
     private String nome;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Users users;
-
     public Administrador() {
     }
 

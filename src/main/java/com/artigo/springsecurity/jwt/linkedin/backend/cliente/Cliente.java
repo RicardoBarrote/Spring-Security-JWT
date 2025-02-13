@@ -2,10 +2,8 @@ package com.artigo.springsecurity.jwt.linkedin.backend.cliente;
 
 import com.artigo.springsecurity.jwt.linkedin.backend.user.Users;
 import com.artigo.springsecurity.jwt.linkedin.backend.user.enums.UserRole;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 import java.io.Serial;
@@ -23,10 +21,6 @@ public class Cliente extends Users implements Serializable {
 
     @Column(nullable = false)
     private String apelido;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Users users;
-
 
     public Cliente() {
     }
