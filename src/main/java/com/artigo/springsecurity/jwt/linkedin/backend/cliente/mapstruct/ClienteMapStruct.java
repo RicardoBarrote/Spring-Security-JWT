@@ -1,7 +1,7 @@
 package com.artigo.springsecurity.jwt.linkedin.backend.cliente.mapstruct;
 
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.Cliente;
-import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteResponseDto;
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.response.ClienteResponseDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;

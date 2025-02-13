@@ -1,4 +1,4 @@
-package com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto;
+package com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.request;
 
 import com.artigo.springsecurity.jwt.linkedin.backend.user.enums.UserRole;
 import jakarta.persistence.EnumType;

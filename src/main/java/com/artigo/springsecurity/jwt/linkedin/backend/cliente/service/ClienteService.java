@@ -1,13 +1,13 @@
 package com.artigo.springsecurity.jwt.linkedin.backend.cliente.service;
 
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.Cliente;
-import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteAtualizarDto;
-import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteRequestDto;
-import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteResponseDto;
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.request.ClienteAtualizarDto;
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.request.ClienteRequestDto;
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.response.ClienteResponseDto;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.exception.ClienteNotFoundException;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.mapstruct.ClienteMapStruct;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.repository.ClienteRepository;
-import com.artigo.springsecurity.jwt.linkedin.backend.lojista.service.interfaces.ValidarLogin;
+import com.artigo.springsecurity.jwt.linkedin.backend.user.service.interfaces.ValidarLogin;
 import com.artigo.springsecurity.jwt.linkedin.backend.user.exception.EmailJaCadastradoException;
 import com.artigo.springsecurity.jwt.linkedin.backend.user.repository.UserRepository;
 import jakarta.transaction.Transactional;

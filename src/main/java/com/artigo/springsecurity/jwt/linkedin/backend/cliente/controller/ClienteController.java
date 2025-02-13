@@ -1,8 +1,8 @@
 package com.artigo.springsecurity.jwt.linkedin.backend.cliente.controller;
 
-import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteAtualizarDto;
-import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteResponseDto;
-import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteRequestDto;
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.request.ClienteAtualizarDto;
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.response.ClienteResponseDto;
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.request.ClienteRequestDto;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

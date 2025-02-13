@@ -1,4 +1,4 @@
-package com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto;
+package com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
