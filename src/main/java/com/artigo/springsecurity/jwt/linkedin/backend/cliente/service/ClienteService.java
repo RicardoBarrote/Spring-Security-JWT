@@ -7,6 +7,9 @@ import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteRequest
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.exception.ClienteNotFoundException;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.mapstruct.ClienteMapStruct;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.repository.ClienteRepository;
+import com.artigo.springsecurity.jwt.linkedin.backend.user.exception.EmailJaCadastradoException;
+import com.artigo.springsecurity.jwt.linkedin.backend.user.repository.UserRepository;
+import com.artigo.springsecurity.jwt.linkedin.backend.user.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,15 +21,18 @@ import java.util.UUID;
 public class ClienteService {
 
     private final ClienteRepository repository;
+    private final UserRepository userRepository;
     private final ClienteMapStruct mapStruct;
 
-    public ClienteService(ClienteRepository repository, ClienteMapStruct mapStruct) {
+    public ClienteService(ClienteRepository repository, UserRepository userRepository, ClienteMapStruct mapStruct) {
         this.repository = repository;
+        this.userRepository = userRepository;
         this.mapStruct = mapStruct;
     }
 
     @Transactional
     public void criar(ClienteRequestDto dto) {
+        validarEmail(dto.email());
         String criptografarSenha = new BCryptPasswordEncoder().encode(dto.senha());
         Cliente cliente = new Cliente(dto.email(), criptografarSenha, dto.role(), dto.cpf(), dto.apelido());
 
@@ -57,5 +63,12 @@ public class ClienteService {
             throw new ClienteNotFoundException("Cliente não encontrado! Id: " + id);
         }
         repository.deleteById(id);
+    }
+
+    //Metodos auxiliares
+    private void validarEmail(String email) {
+        if (userRepository.findByEmail(email) != null) {
+            throw new EmailJaCadastradoException("Email já cadastrado!");
+        }
     }
 }
