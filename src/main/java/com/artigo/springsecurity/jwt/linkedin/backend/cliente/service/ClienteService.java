@@ -2,14 +2,13 @@ package com.artigo.springsecurity.jwt.linkedin.backend.cliente.service;
 
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.Cliente;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteAtualizarDto;
-import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteResponseDto;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteRequestDto;
+import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteResponseDto;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.exception.ClienteNotFoundException;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.mapstruct.ClienteMapStruct;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.repository.ClienteRepository;
 import com.artigo.springsecurity.jwt.linkedin.backend.user.exception.EmailJaCadastradoException;
 import com.artigo.springsecurity.jwt.linkedin.backend.user.repository.UserRepository;
-import com.artigo.springsecurity.jwt.linkedin.backend.user.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
