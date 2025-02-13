@@ -7,6 +7,7 @@ import com.artigo.springsecurity.jwt.linkedin.backend.cliente.dto.ClienteRespons
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.exception.ClienteNotFoundException;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.mapstruct.ClienteMapStruct;
 import com.artigo.springsecurity.jwt.linkedin.backend.cliente.repository.ClienteRepository;
+import com.artigo.springsecurity.jwt.linkedin.backend.lojista.service.interfaces.ValidarLogin;
 import com.artigo.springsecurity.jwt.linkedin.backend.user.exception.EmailJaCadastradoException;
 import com.artigo.springsecurity.jwt.linkedin.backend.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ClienteService {
+public class ClienteService implements ValidarLogin {
 
     private final ClienteRepository repository;
     private final UserRepository userRepository;
@@ -64,10 +65,12 @@ public class ClienteService {
         repository.deleteById(id);
     }
 
+
     //Metodos auxiliares
-    private void validarEmail(String email) {
+    @Override
+    public void validarEmail(String email) {
         if (userRepository.findByEmail(email) != null) {
-            throw new EmailJaCadastradoException("Email já cadastrado!");
+            throw new EmailJaCadastradoException("Email já está cadastrado! Email: " + email);
         }
     }
 }
