@@ -2,7 +2,9 @@ package com.artigo.springsecurity.jwt.linkedin.backend.infra.entity.administrado
 
 import com.artigo.springsecurity.jwt.linkedin.backend.infra.entity.user.User;
 import com.artigo.springsecurity.jwt.linkedin.backend.infra.enums.UserRole;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -19,10 +21,11 @@ public class Administrador extends User implements Serializable {
     public Administrador() {
     }
 
-    public Administrador(String email, String senha, UserRole role, String nome) {
-        super(email, senha, role);
+    public Administrador(String email, String senha, String nome) {
+        super(email, senha, UserRole.ADMIN);
         this.nome = nome;
     }
+
 
     public String getNome() {
         return nome;
